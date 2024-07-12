@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { Menus } from '../../../menu';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { MenuPipe } from '../../../pipes/menu.pipe';
 
 @Component({
   selector: 'app-main-sidebar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive, FormsModule, MenuPipe],
   templateUrl: './main-sidebar.component.html',
-  styleUrl: './main-sidebar.component.css'
+  styleUrl: './main-sidebar.component.css',
 })
 export class MainSidebarComponent {
-  menus = Menus
+  search: string = "";
+  menus = Menus;
 }

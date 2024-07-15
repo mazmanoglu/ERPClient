@@ -1,0 +1,45 @@
+<app-blank pageName="All Customers" [routes]="['Customers']">
+  <app-section sectionTitle="Customer List">
+    <div class="form-group row">
+      <div class="col-9">
+        <button class="btn btn-outline-info" type="button"><i class="fa-solid fa-user-plus"></i>Add Customer</button>
+      </div>
+      <div class="col-3"><input [(ngModel)]="search" type="search" class="form-control" placeholder="Search..."></div>
+    </div>
+    <div class="form-group mt2">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer Name</th>
+            <th>Tax Department</th>
+            <th>Tax Number</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Transactions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(customer of customers | customer:search; track customer){
+          <tr>
+            <td>{{$index + 1}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.taxDepartment}}</td>
+            <td>{{customer.taxNumber}}</td>
+            <td>{{customer.city}}</td>
+            <td>{{customer.fullAddress}}</td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm">
+                <i class="fa fa-jedi"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa-brands fa-galactic-republic"></i>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </app-section>
+</app-blank>

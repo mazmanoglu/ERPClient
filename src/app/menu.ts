@@ -9,14 +9,29 @@ export class MenuModel {
 export const Menus: MenuModel[] = [
   {
     name: 'Home Page',
-    icon: 'fa fa-home',
+    icon: 'fas fa-solid fa-igloo',
     url: '/',
     isTitle: false,
     subMenus: [],
   },
   {
+    name: "Main Group",
+    icon: "fa fa-people-roof",
+    url: "",
+    isTitle: false,
+    subMenus: [
+      {
+        name: "Customers",
+        icon: "fa fa-people-group",
+        url: "/customers",
+        isTitle: false,
+        subMenus: []
+      }
+    ]
+  },
+  {
     name: 'Admin',
-    icon: 'fa fa-lock',
+    icon: 'fas fa-tools',
     url: '/admin',
     isTitle: false,
     subMenus: [],
@@ -30,7 +45,7 @@ export const Menus: MenuModel[] = [
   },
   {
     name: 'Management',
-    icon: 'fa fa-list',
+    icon: 'fa fa-bars-progress',
     url: '/management',
     isTitle: false,
     subMenus: [

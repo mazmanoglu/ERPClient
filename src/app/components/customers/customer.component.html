@@ -2,7 +2,8 @@
   <app-section sectionTitle="Customer List">
     <div class="form-group row">
       <div class="col-9">
-        <button class="btn btn-outline-info" type="button"><i class="fa-solid fa-user-plus"></i>Add Customer</button>
+        <button class="btn btn-outline-info" data-toggle="modal" data-target="#createModal"><i
+            class="fa-solid fa-user-plus"></i>Add Customer</button>
       </div>
       <div class="col-3"><input [(ngModel)]="search" type="search" class="form-control" placeholder="Search..."></div>
     </div>
@@ -15,6 +16,7 @@
             <th>Tax Department</th>
             <th>Tax Number</th>
             <th>City</th>
+            <th>Postcode</th>
             <th>Address</th>
             <th>Transactions</th>
           </tr>
@@ -27,12 +29,13 @@
             <td>{{customer.taxDepartment}}</td>
             <td>{{customer.taxNumber}}</td>
             <td>{{customer.city}}</td>
+            <td>{{customer.postCode}}</td>
             <td>{{customer.fullAddress}}</td>
             <td>
-              <button class="btn btn-outline-primary btn-sm">
+              <button data-toggle="modal" data-target="#updateModal" (click)="get(customer)" class="btn btn-outline-primary btn-sm">
                 <i class="fa fa-jedi"></i>
               </button>
-              <button class="btn btn-outline-danger btn-sm">
+              <button (click)="deleteById(customer)" class="btn btn-outline-danger btn-sm">
                 <i class="fa-brands fa-galactic-republic"></i>
               </button>
             </td>
@@ -43,3 +46,141 @@
     </div>
   </app-section>
 </app-blank>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Add Customer</h1>
+        <button type="button" #createModalCloseBtn class="btn btn-outline-danger" data-dismiss="modal"
+          aria-label="Close">
+          <i class="fa-brands fa-x-twitter"></i></button>
+      </div>
+
+      <form formValidate #createForm="ngForm" autocomplete="off" (ngSubmit)="create(createForm)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" required minlength="3" [(ngModel)]="createModel.name" class="form-control" name="name">
+            <div class="invalid-feedback"></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>Tax Department</label>
+                <input type="text" required minlength="3" [(ngModel)]="createModel.taxDepartment" class="form-control"
+                  name="taxDepartment">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Tax Number</label>
+                <input type="text" class="form-control" [(ngModel)]="createModel.taxNumber" name="taxNumber" required
+                  minlength="11" maxlength="11">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" required minlength="3" [(ngModel)]="createModel.city" class="form-control"
+                  name="city">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Postcode</label>
+                <input type="number" [(ngModel)]="createModel.postCode" required minlength="4" maxlength="4"
+                  class="form-control" name="postcode">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <textarea class="form-control" required minlength="3" [(ngModel)]="createModel.fullAddress"
+              name="fullAddress" rows="5"></textarea>
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-info w-100">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- update Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Update Customer</h1>
+        <button type="button" #updateModalCloseBtn class="btn btn-outline-danger" data-dismiss="modal"
+          aria-label="Close">
+          <i class="fa-brands fa-x-twitter"></i></button>
+      </div>
+
+      <form formValidate #updateForm="ngForm" autocomplete="off" (ngSubmit)="update(updateForm)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" required minlength="3" [(ngModel)]="updateModel.name" class="form-control" name="updateName">
+            <div class="invalid-feedback"></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>Tax Department</label>
+                <input type="text" required minlength="3" [(ngModel)]="updateModel.taxDepartment" class="form-control"
+                  name="updateTaxDepartment">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Tax Number</label>
+                <input type="text" class="form-control" [(ngModel)]="updateModel.taxNumber" name="updateTaxNumber" required
+                  minlength="11" maxlength="11">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" required minlength="3" [(ngModel)]="updateModel.city" class="form-control"
+                  name="updateCity">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Postcode</label>
+                <input type="number" [(ngModel)]="updateModel.postCode" required minlength="4" maxlength="4"
+                  class="form-control" name="updatePostcode">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <textarea class="form-control" required minlength="3" [(ngModel)]="updateModel.fullAddress"
+              name="updateFullAddress" rows="5"></textarea>
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-warning w-100">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

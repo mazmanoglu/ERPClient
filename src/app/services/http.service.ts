@@ -9,7 +9,11 @@ import { ErrorService } from './error.service';
   providedIn: 'root',
 })
 export class HttpService {
-  constructor(private http: HttpClient, private auth: AuthService, private error:ErrorService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private error: ErrorService
+  ) {}
   post<T>(
     apiUrl: string,
     body: any,
@@ -19,7 +23,7 @@ export class HttpService {
     this.http
       .post<ResultModel<T>>(`${api}/${apiUrl}`, body, {
         headers: {
-          Authorization: 'Bearer' + this.auth.token,
+          Authorization: 'Bearer ' + this.auth.token,
         },
       })
       .subscribe({

@@ -1,0 +1,19 @@
+.btn-outline-primary {
+  margin-right: 10px;
+}
+
+.fa-plug-circle-plus {
+  margin-right: 5px;
+}
+
+/* Hide the arrows in input type number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide the arrows in input type number */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

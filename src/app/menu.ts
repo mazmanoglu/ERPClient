@@ -15,19 +15,26 @@ export const Menus: MenuModel[] = [
     subMenus: [],
   },
   {
-    name: "Main Group",
-    icon: "fa fa-people-roof",
-    url: "",
+    name: 'Main Group',
+    icon: 'fa fa-people-roof',
+    url: '',
     isTitle: false,
     subMenus: [
       {
-        name: "Customers",
-        icon: "fa fa-people-group",
-        url: "/customers",
+        name: 'Customers',
+        icon: 'fa fa-people-group',
+        url: '/customers',
         isTitle: false,
-        subMenus: []
-      }
-    ]
+        subMenus: [],
+      },
+      {
+        name: 'Warehouses',
+        icon: 'fa fa-warehouse',
+        url: '/warehouses',
+        isTitle: false,
+        subMenus: [],
+      },
+    ],
   },
   {
     name: 'Admin',

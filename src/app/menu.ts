@@ -34,6 +34,13 @@ export const Menus: MenuModel[] = [
         isTitle: false,
         subMenus: [],
       },
+      {
+        name: 'Products',
+        icon: 'fa fa-dolly',
+        url: '/products',
+        isTitle: false,
+        subMenus: [],
+      },
     ],
   },
   {

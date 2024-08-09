@@ -7,7 +7,7 @@ import { WarehouseModel } from '../models/warehouse.model';
 })
 export class WarehousePipe implements PipeTransform {
   transform(value: WarehouseModel[], search: string): WarehouseModel[] {
-    if (search) {
+    if (!search) {
       return value;
     }
     return value.filter(

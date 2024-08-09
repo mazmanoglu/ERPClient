@@ -8,7 +8,7 @@ import { CustomerModel } from '../models/customer.model';
 export class CustomerPipe implements PipeTransform {
 
   transform(value: CustomerModel[], search:string): CustomerModel[] {
-    if (search) {
+    if (!search) {
       return value;
     }
     return value.filter(p =>

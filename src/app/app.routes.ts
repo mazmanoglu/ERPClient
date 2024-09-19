@@ -7,6 +7,7 @@ import { AuthService } from './services/auth.service';
 import { CustomerComponent } from './components/customers/customer.component';
 import { WarehousesComponent } from './components/warehouses/warehouses.component';
 import { ProductsComponent } from './components/products/products.component';
+import { RecipesComponent } from './components/recipes/recipes.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +34,10 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+      },
+      {
+        path: 'recipes',
+        component: RecipesComponent,
       },
     ],
   },

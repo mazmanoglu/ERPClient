@@ -1,0 +1,124 @@
+<app-blank pageName="All Recipes" [routes]="['Recipes']">
+  <app-section sectionTitle="Recipe List">
+    <div class="form-group row">
+      <div class="col-9">
+        <button class="btn btn-outline-info" data-toggle="modal" data-target="#createModal"><i
+            class="fa-solid fa-prescription-bottle-alt"></i>Add Recipe</button>
+      </div>
+      <div class="col-3"><input [(ngModel)]="search" type="search" class="form-control" placeholder="Search..."></div>
+    </div>
+    <div class="form-group mt2">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Transactions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(data of recipes | recipe:search; track data){
+          <tr>
+            <td>{{$index + 1}}</td>
+            <td>{{data.product.name}}</td>
+            <td>
+              <button (click)="deleteById(data)" class="btn btn-outline-danger btn-sm">
+                <i class="fa-brands fa-galactic-republic"></i>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </app-section>
+</app-blank>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Add Recipe Form</h1>
+        <button type="button" #createModalCloseBtn class="btn btn-outline-danger" data-dismiss="modal"
+          aria-label="Close">
+          <i class="fa-brands fa-x-twitter"></i></button>
+      </div>
+
+      <form formValidate #createForm="ngForm" autocomplete="off" (ngSubmit)="create(createForm)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Product to be made</label>
+            <select class="form-control" [(ngModel)]="createModel.productId" name="productId" required>
+              @for (product of products; track product) {
+              <option [value]="product.id">{{product.name}} ({{product.type.name}})</option>
+              }
+            </select>
+            <div class="invalid-feedback"></div>
+          </div>
+          <hr>
+          <div class="form-group mt-2">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Product to be used</label>
+                  <select class="form-control" [(ngModel)]="detail.productId" [ngModelOptions]="{standalone:true}">
+                    @for (product of semiProducts; track product) {
+                    <option [value]="product.id">{{product.name}}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Quantity</label>
+                  <input class="form-control" [(ngModel)]="detail.quantity" [ngModelOptions]="{standalone:true}">
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Transactions</label>
+                  <br>
+                  <button type="button" class="btn btn-outline-warning w-50" (click)="addDetail()"><i
+                      class="fa fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Transactions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (data of createModel.recipeDetails; track data) {
+                  <tr>
+                    <td>{{$index +1}}</td>
+                    <td>{{data.product.name}}</td>
+                    <td>{{data.product.quantity}}</td>
+                    <td>
+                      <button (click)="removeDetail($index)" class="btn btn-outline-info btn-sm">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-info w-100">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- update Modal -->
+<!-------------->

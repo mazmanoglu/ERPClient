@@ -41,6 +41,13 @@ export const Menus: MenuModel[] = [
         isTitle: false,
         subMenus: [],
       },
+      {
+        name: 'Recipes',
+        icon: 'fa fa-mortar-pestle',
+        url: '/recipes',
+        isTitle: false,
+        subMenus: [],
+      },
     ],
   },
   {

@@ -17,12 +17,12 @@
           </tr>
         </thead>
         <tbody>
-          @for(data of recipes | recipe:search; track data){
+          @for(recip of recipes | recipe:search; track recip){
           <tr>
             <td>{{$index + 1}}</td>
-            <td>{{data.product.name}}</td>
+            <td>{{recip.product.name}}</td>
             <td>
-              <button (click)="deleteById(data)" class="btn btn-outline-danger btn-sm">
+              <button (click)="deleteById(recip)" class="btn btn-outline-danger btn-sm">
                 <i class="fa-brands fa-galactic-republic"></i>
               </button>
             </td>
@@ -39,7 +39,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">Add Recipe Form</h1>
+        <h1 class="modal-title fs-5">Recipe Addition</h1>
         <button type="button" #createModalCloseBtn class="btn btn-outline-danger" data-dismiss="modal"
           aria-label="Close">
           <i class="fa-brands fa-x-twitter"></i></button>
@@ -47,6 +47,7 @@
 
       <form formValidate #createForm="ngForm" autocomplete="off" (ngSubmit)="create(createForm)">
         <div class="modal-body">
+
           <div class="form-group">
             <label>Product to be made</label>
             <select class="form-control" [(ngModel)]="createModel.productId" name="productId" required>
@@ -56,7 +57,9 @@
             </select>
             <div class="invalid-feedback"></div>
           </div>
+
           <hr>
+
           <div class="form-group mt-2">
             <div class="row">
               <div class="col-6">
@@ -69,12 +72,14 @@
                   </select>
                 </div>
               </div>
+
               <div class="col-3">
                 <div class="form-group">
                   <label>Quantity</label>
                   <input class="form-control" [(ngModel)]="detail.quantity" [ngModelOptions]="{standalone:true}">
                 </div>
               </div>
+
               <div class="col-3">
                 <div class="form-group">
                   <label>Transactions</label>
@@ -95,13 +100,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @for (data of createModel.recipeDetails; track data) {
+                  @for (data of createModel.details; track data) {
                   <tr>
                     <td>{{$index +1}}</td>
                     <td>{{data.product.name}}</td>
-                    <td>{{data.product.quantity}}</td>
+                    <td>{{data.quantity}}</td>
                     <td>
-                      <button (click)="removeDetail($index)" class="btn btn-outline-info btn-sm">
+                      <button (click)="removeDetail($index)" class="btn btn-outline-danger btn-sm">
                         <i class="fa-solid fa-trash"></i>
                       </button>
                     </td>

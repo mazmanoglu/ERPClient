@@ -47,21 +47,22 @@ export class RecipesComponent {
   getAllProducts() {
     this.http.post<ProductModel[]>('Products/Getall', {}, (res) => {
       this.products = res;
-      this.semiProducts = res.filter(p => p.type.value == 2);
+      this.semiProducts = res.filter((p) => p.type.value == 2);
     });
   }
 
   addDetail() {
-    const product = this.products.find((p) => p.id === this.detail.productId);
+    const product = this.products.find((p) => p.id == this.detail.productId);
     if (product) {
       this.detail.product = product;
     }
-    this.createModel.recipeDetails.push(this.detail);
+
+    this.createModel.details.push(this.detail);
     this.detail = new RecipeDetailModel();
   }
 
   removeDetail(index: number) {
-    this.createModel.recipeDetails.splice(index, 1);
+    this.createModel.details.splice(index, 1);
   }
 
   create(form: NgForm) {

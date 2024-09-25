@@ -8,6 +8,7 @@ import { CustomerComponent } from './components/customers/customer.component';
 import { WarehousesComponent } from './components/warehouses/warehouses.component';
 import { ProductsComponent } from './components/products/products.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
         path: 'recipes',
         component: RecipesComponent,
       },
+      {
+        path: 'recipe-details/:id',
+        component: RecipeDetailsComponent,
+      }
     ],
   },
 ];

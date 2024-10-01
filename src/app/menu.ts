@@ -51,6 +51,13 @@ export const Menus: MenuModel[] = [
     ],
   },
   {
+    name: 'Orders',
+    icon: 'fa-brands fa-opera',
+    url: '/orders',
+    isTitle: false,
+    subMenus: [],
+  },
+  {
     name: 'Admin',
     icon: 'fas fa-tools',
     url: '/admin',

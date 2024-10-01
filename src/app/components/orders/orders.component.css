@@ -2,11 +2,12 @@
   margin-right: 10px;
 }
 
-.btn-outline-info{
-margin-right: 10px
-}
-.fa-cart-plus {
+.fa-folder-tree {
   margin-right: 5px;
+}
+
+.fa-plus {
+  zoom: 120%;
 }
 
 /* Hide the arrows in input type number */
@@ -16,7 +17,3 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* Hide the arrows in input type number */
-input[type="number"] {
-  -moz-appearance: textfield;
-}

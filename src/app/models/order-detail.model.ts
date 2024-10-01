@@ -1,9 +1,10 @@
 import { ProductModel } from './product.model';
 
-export class RecipeDetailModel {
+export class OrderDetailModel {
   id: string = '';
+  orderId: string = '';
   productId: string = '';
   product: ProductModel = new ProductModel();
-  quantity: number = 1;
-  recipeId: string = '';
+  quantity: number = 0;
+  price: number = 0;
 }

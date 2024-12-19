@@ -30,6 +30,10 @@
             <td>{{order.deliveryDate | date:'dd.MM.yyyy'}}</td>
             <td>{{order.status.name}}</td>
             <td>
+              <a class="btn btn-outline-info btn-sm" href="requirements-planning/{{order.id}}" target="_blank">
+                <i class="fa-solid fa-recycle"></i>
+                Material Requirements Planning
+              </a>
               <button data-toggle="modal" data-target="#updateModal" (click)="get(order)"
                 class="btn btn-outline-primary btn-sm">
                 <i class="fa fa-jedi"></i>

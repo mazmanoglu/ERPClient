@@ -13,13 +13,13 @@
       </tr>
     </thead>
     <tbody>
-      @for (product of data.products; track product) {}
+      @for (product of data.products; track product) {
       <tr>
         <td>$index+1</td>
-        <td>producut</td>
-        <td>50</td>
-        <td>Nedense siparis</td>
+        <td>{{product.name}}</td>
+        <td>{{product.quantity}}</td>
       </tr>
+    }
     </tbody>
   </table>
 </div>
